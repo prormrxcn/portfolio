@@ -18,8 +18,8 @@ PORTFOLIO_CONFIG = {
     'title': 'FPGA & VLSI Portfolio',
     'description': 'Digital Systems Designer specializing in Verilog HDL and FPGA Development',
     'github_url': 'https://github.com/prormrxcn',
-    'email': 'contact@prormrxcn.dev',
-    'linkedin': '#',  # Add your LinkedIn URL
+    'email': 'dakshvaishnavx@outlook.com',
+    'linkedin': 'https://www.linkedin.com/in/daksh-vaishnav-3bba94327/',  # Add your LinkedIn URL
     'twitter': '#',   # Add your Twitter URL
 }
 
