@@ -1,0 +1,337 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ config.owner }}</h1>
+            <h2 class="hero-subtitle">{{ config.title }}</h2>
+            <p class="hero-description">{{ config.description }}</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('portfolio') }}" class="btn">View Portfolio</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="fpga-animation">
+                <i class="fas fa-microchip"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="featured-projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card card">
+                <div class="project-header">
+                    <h3>{{ project.title }}</h3>
+                    <span class="project-status status-{{ project.status.lower() }}">{{ project.status }}</span>
+                </div>
+                <p class="project-description">{{ project.short_description }}</p>
+                <div class="project-tech">
+                    {% for tech in project.technologies[:3] %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                <div class="project-actions">
+                    <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-secondary">View Details</a>
+                    <a href="{{ project.github_url }}" target="_blank" class="btn-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="section-footer">
+            <a href="{{ url_for('portfolio') }}" class="btn">View All Projects</a>
+        </div>
+    </section>
+
+    <!-- Skills Overview -->
+    <section class="skills-overview">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills-grid">
+            {% for skill_key, skill in skills.items() %}
+            <div class="skill-card card">
+                <div class="skill-icon">{{ skill.icon }}</div>
+                <h3>{{ skill.title }}</h3>
+                <p>{{ skill.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<style>
+    /* Hero Section */
+    .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        padding: 4rem 0;
+        min-height: 60vh;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .hero-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fpga-animation {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    }
+
+        .fpga-animation i {
+            font-size: 4rem;
+            color: white;
+        }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+    }
+
+    /* Section Styles */
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        color: white;
+        margin-bottom: 3rem;
+        font-weight: 700;
+    }
+
+    .section-footer {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .project-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+        .project-header h3 {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+    .project-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-completed {
+        background: #10b981;
+        color: white;
+    }
+
+    .status-ongoing {
+        background: #f59e0b;
+        color: white;
+    }
+
+    .project-description {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+        background: #667eea;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .project-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #333;
+        color: white;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-icon:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+    /* Skills Grid */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-card {
+        text-align: center;
+    }
+
+    .skill-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+        color: #333;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .skill-card p {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .skill-level {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .skill-bar {
+        flex: 1;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+
+    .skill-percentage {
+        font-weight: 600;
+        color: #667eea;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .fpga-animation {
+            width: 150px;
+            height: 150px;
+        }
+
+            .fpga-animation i {
+                font-size: 3rem;
+            }
+
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

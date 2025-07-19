@@ -1,0 +1,19 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5 text-center">
+    <div class="container py-5">
+        <h1 class="display-1 text-danger">500</h1>
+        <h2 class="mb-4">Internal Server Error</h2>
+        <p class="lead mb-5">Something went wrong on our end. We're working to fix it!</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">
+                <i class="fas fa-home me-2"></i> Home
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline-primary">
+                <i class="fas fa-envelope me-2"></i> Contact Support
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

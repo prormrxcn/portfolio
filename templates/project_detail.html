@@ -1,0 +1,96 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1>{{ project.title }}</h1>
+            <p class="lead">{{ project.short_description }}</p>
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <span class="badge bg-{% if project.status == 'Completed' %}success{% else %}warning{% endif %}">
+                    {{ project.status }}
+                </span>
+                <span class="badge bg-info">{{ project.date }}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <img src="{{ project.image_url }}" class="img-fluid rounded mb-4" alt="{{ project.title }}">
+
+                        <h3 class="mb-3">Project Overview</h3>
+                        <p>{{ project.long_description }}</p>
+
+                        <h4 class="mt-5 mb-3">Key Features</h4>
+                        <ul>
+                            {% for feature in project.features %}
+                            <li>{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h4 class="mt-5 mb-3">Challenges</h4>
+                        <ul>
+                            {% for challenge in project.challenges %}
+                            <li>{{ challenge }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h4 class="mb-3">Project Details</h4>
+
+                        <h5>Technologies</h5>
+                        <div class="d-flex flex-wrap gap-1 mb-4">
+                            {% for tech in project.technologies %}
+                            <span class="badge bg-primary">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <h5>Links</h5>
+                        <div class="d-grid gap-2">
+                            <a href="{{ project.github_url }}"
+                               class="btn btn-dark mb-2"
+                               target="_blank">
+                                <i class="fab fa-github me-2"></i> GitHub Repository
+                            </a>
+                            {% if project.demo_url != '#' %}
+                            <a href="{{ project.demo_url }}"
+                               class="btn btn-primary"
+                               target="_blank">
+                                <i class="fas fa-external-link-alt me-2"></i> Live Demo
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="mb-3">More Projects</h4>
+                        <div class="list-group">
+                            {% for p in projects %}
+                            {% if p.id != project.id %}
+                            <a href="{{ url_for('project_detail', project_id=p.id) }}"
+                               class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ p.title }}</h6>
+                                    <small>{{ p.date }}</small>
+                                </div>
+                                <p class="mb-1 small">{{ p.short_description|truncate(60) }}</p>
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

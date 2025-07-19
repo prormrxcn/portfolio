@@ -1,0 +1,55 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4">
+                <h1>About Me</h1>
+                <p class="lead">FPGA & VLSI Design Specialist</p>
+                <p>Hello! I'm {{ config.owner }}, a digital systems designer with a passion for creating efficient hardware solutions using FPGAs and ASICs.</p>
+                <p>My expertise lies in Verilog HDL, FPGA development, and VLSI design, with a focus on creating optimized, high-performance digital systems.</p>
+
+                <div class="mt-4">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary me-2">
+                        Contact Me
+                    </a>
+                    <a href="{{ config.github_url }}" class="btn btn-dark" target="_blank">
+                        <i class="fab fa-github me-1"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="bg-light rounded-circle p-3 d-inline-block">
+                    <i class="fas fa-user-tie fa-6x text-primary"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h2 class="text-center mb-5">Technical Skills</h2>
+            <div class="row g-4">
+                {% for key, skill in skills.items() %}
+                <div class="col-md-6">
+                    <div class="card skill-card h-100 shadow">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <h3 class="mb-0">{{ skill.icon }}</h3>
+                                <h4 class="ms-3 mb-0">{{ skill.title }}</h4>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: {{ skill.level }}%"></div>
+                            </div>
+                            <p>{{ skill.description }}</p>
+                            <p class="text-muted small mb-0">
+                                <strong>Tools:</strong> {{ skill.tools|join(', ') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

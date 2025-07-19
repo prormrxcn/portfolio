@@ -1,0 +1,389 @@
+﻿/* Custom Styles for FPGA Portfolio */
+:root {
+    --primary: #4e54c8; /* Electric violet */
+    --secondary: #8f94fb; /* Soft violet blue */
+    --dark: #0f172a; /* Deep space blue */
+    --light: #f8f9fa; /* Light background for contrast */
+    --gray: #94a3b8; /* Muted gray-blue */
+    --space-dark: #0a0f2c; /* Almost black navy */
+    --space-medium: #1e293b; /* Midnight blue */
+    --text-light: #f1f5f9; /* Light text for dark backgrounds */
+    --text-muted: #94a3b8; /* Muted for secondary info */
+}
+
+
+/* Base Styles with Space Theme */
+body {
+    background: linear-gradient(to bottom, var(--space-dark), var(--space-medium), var(--space-dark));
+    color: var(--text-light);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+
+
+    overflow-x: hidden;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Starry background canvas */
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Behind everything except body */
+}
+
+/* Circuit board pattern overlay */
+.circuit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(143, 148, 251, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(143, 148, 251, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1; /* Above stars but below content */
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+    font-weight: 10000;
+    color: var(--secondary);
+}
+
+.display-1, .display-2, .display-3, .display-4 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 15px rgba(143, 148, 251, 0.4);
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+/* Navigation - Updated for space theme */
+.navbar {
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(94, 114, 228, 0.3);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--secondary) !important;
+    text-shadow: 0 0 10px rgba(143, 148, 251, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand i {
+    font-size: 1.8rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    color: var(--text-light) !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--secondary) !important;
+    text-shadow: 0 0 10px rgba(143, 148, 251, 0.5);
+    background-color: transparent;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Cards - Updated for space theme */
+.card {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(94, 114, 228, 0.3);
+    color: var(--text-light);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+}
+    .card-title,
+    .card-text,
+    .card-body,
+    .card-footer,
+    .card-header,
+    .card p,
+    .card span,
+    .card li,
+    .card a {
+        color: var(--text-light) !important;
+    }
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(94, 114, 228, 0.6);
+}
+
+.project-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-bottom: 1px solid rgba(94, 114, 228, 0.3);
+}
+
+.project-card:hover .card-img-top {
+    transform: scale(1.03);
+}
+
+/* Skills */
+.skill-card {
+    height: 100%;
+    border: 1px solid rgba(94, 114, 228, 0.3);
+    background: rgba(30, 41, 59, 0.7);
+}
+
+.skill-card .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(30, 41, 59, 0.7);
+}
+
+.progress-bar {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+/* Buttons */
+.btn {
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 800;
+    background-color: var(--space-dark); /* or a nice accent color */
+    color: var(--text-light); /* dark text */
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #3f46b8, #7a80e8);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+}
+
+.btn-outline-primary {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.btn-outline-primary:hover {
+    background: var(--secondary);
+    color: var(--space-dark);
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+    border-radius: 20px;
+    background: rgba(94, 114, 228, 0.2);
+    color: var(--secondary);
+    border: 1px solid rgba(94, 114, 228, 0.4);
+}
+
+/* Sections */
+section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+.bg-light {
+    background-color: rgba(248, 249, 250, 0.7) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Hero Section - Updated for space theme */
+.hero {
+    padding: 7rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(143, 148, 251, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+main {
+    color: var(--text-light);
+}
+p, li, span, div {
+    color: var(--text-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--secondary);
+}
+
+/* Footer - Updated for space theme */
+footer {
+    margin-top: auto;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(94, 114, 228, 0.3);
+    padding: 2rem 0;
+    color: var(--text-light);
+}
+
+footer h4 {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+.social-links a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 45px;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.social-links a:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* Form Styles */
+.form-control {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(94, 114, 228, 0.3);
+    color: var(--text-light);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.25rem rgba(143, 148, 251, 0.25);    
+    color: var(--text-light);   
+}    
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+}
+.card-title {
+    color: var(--text-light) !important;
+}
+
+h3{
+    color: var(--secondary) !important;
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* or space-evenly / space-around */
+    gap: 2rem; /* spacing between cards */
+    max-width: 100%;
+}
+.project-card {
+    flex: 1 1 320px;
+    max-width: 620px;
+    min-height: 260px;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+    .project-card p,
+    .project-card h3,
+    .project-card h4 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
